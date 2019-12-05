@@ -1,0 +1,16 @@
+version: '3'
+services:
+  echo-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - EXTERNAL_PORT=${EXTERNAL_PORT}
+    ports:
+      - ${EXTERNAL_PORT}:8080
+    networks:
+      - net
+
+networks:
+   net:
