@@ -17,7 +17,7 @@ import ch.qos.logback.classic.Logger;
 public class Client {
 	
 	private static final String URL = "http://localhost:8080/echo";
-	private static final String APIS_URL = "http://localhost:8181/v2/api-docs";
+	private static final String APIS_URL = "http://localhost:8080/v2/api-docs";
 
 	public static void main(String[] args) {
 		runTests();
