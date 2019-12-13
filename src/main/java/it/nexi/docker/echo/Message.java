@@ -1,40 +1,28 @@
 package it.nexi.docker.echo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Message {
 	
-	private String message;
+	@Getter @Setter
+	private String text;
+	
+	@Getter @Setter
 	private String method;
 	
 	public Message() {
 	}
 	
-	public Message(String message) {
-		this.message = message;
+	public Message(String text) {
+		this.text = text;
 	}
 	
-	public Message(String message, String method) {
-		this.message = message;
+	public Message(String text, String method) {
+		this.text = text;
 		this.method = method;
 	}
 
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getMethod() {
-		return method;
-	}
-
-	public void setMethod(String method) {
-		this.method = method;
-	}
-	
-	
 	public Message addMethod(String method) {
 		this.method = method;
 		return this;

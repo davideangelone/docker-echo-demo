@@ -60,7 +60,7 @@ public class Client {
 
 	    UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL);
 	    if (method == HttpMethod.GET) {
-	    	builder.queryParam("message", responseMessage.getText());
+	    	builder.queryParam("text", responseMessage.getText());
 	    }
 	    
 	    log.info("TEST >>> Invocazione metodo {} all'URL {}", method, builder.toUriString());
