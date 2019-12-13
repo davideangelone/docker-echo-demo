@@ -1,4 +1,4 @@
-package it.nexi.DockerEchoDemo;
+package it.nexi.docker.echo;
 
 import java.util.Arrays;
 
@@ -13,17 +13,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import it.nexi.docker.echo.Message;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Client {
 	
-	private static final String URL = "http://localhost:8080/echo";
-	private static final String APIS_URL = "http://localhost:8080/v2/api-docs";
+	private static final String URL = "http://localhost:8080/echo/"; // Do not remove trailing slash!
+	private static final String APIS_URL = "http://localhost:8080/echo/v2/api-docs";
 
 	public static void main(String[] args) {
 		runTests();
 	}
 	
-	public static void runTests() {
+	public static boolean runTests() {
 		
 		Logger logger = (Logger)LoggerFactory.getLogger("org.apache.http");
 	    logger.setLevel(Level.INFO);
@@ -36,11 +39,13 @@ public class Client {
 	    doCall(HttpMethod.PUT);
 	    doCall(HttpMethod.DELETE);
 	    doCall(HttpMethod.PATCH);
+	    
+	    return true;
 	}
 	
 	private static void doGetApis() {
 	    String apis = new RestTemplate().getForObject(APIS_URL, String.class);
-	    System.out.println("APIS = " + apis);
+	    log.info("APIS = {}", apis);
 	}
 	
 	private static void doCall(HttpMethod method) {
@@ -58,10 +63,12 @@ public class Client {
 	    	builder.queryParam("message", responseMessage.getMessage());
 	    }
 	    
+	    log.info("TEST >>> Invocazione metodo {} all'URL {}", method, builder.toUriString());
+	    
 	    Message response = 
 	    		restTemplate.exchange(builder.toUriString(), method,
 	    							  new HttpEntity<Message>(responseMessage, headers),
 	    							  Message.class).getBody();
-	    System.out.println("TEST risposta metodo " + method.name() + " : [" + response.getMessage() + "]");
+	    log.info("TEST <<< Risposta metodo {} : [{}]", method.name(), response.getMessage());
 	}
 }

@@ -1,4 +1,4 @@
-package it.nexi.DockerEchoDemo;
+package it.nexi.docker.echo;
 
 public class Message {
 	

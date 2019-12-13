@@ -1,23 +1,25 @@
-package it.nexi.DockerEchoDemo;
+package it.nexi.docker.echo;
 
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@Slf4j
 public class DockerEchoDemoApplication {
-
+	
 	public static void main(String[] args) {
 		
-		System.out.println("Variabili di ambiente:");
+		SpringApplication.run(DockerEchoDemoApplication.class, args);
+		
+		log.info("Variabili di ambiente:");
 		for (Map.Entry<String, String> entry : System.getenv().entrySet()) {
-			System.out.println("[" + entry.getKey() + "] = [" + entry.getValue() + "]");
+			log.info("[{}] = [{}]", entry.getKey(),  entry.getValue());
 		}
 		
-		System.out.println("Apis at : /v2/api-docs");
-		
-		SpringApplication.run(DockerEchoDemoApplication.class, args);
+		log.info("Apis at : /v2/api-docs");
 	}
 
 }
