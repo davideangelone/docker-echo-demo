@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +25,12 @@ public class DockerController {
 	}
 	
 	@GetMapping
-	public Message echoGet(@RequestParam(required = false) String message, @RequestBody(required =  false) Message body) {
+	public Message echoGet(@RequestParam(required = false) String text, @RequestBody(required =  false) Message body) {
 		if (null == body) {
 			body = new Message();
 		}
-		if (null != message) {
-			body.setMessage(message);
+		if (null != text) {
+			body.setText(text);
 		}
 		return body.addMethod("GET");
 	}

@@ -60,7 +60,7 @@ public class Client {
 
 	    UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL);
 	    if (method == HttpMethod.GET) {
-	    	builder.queryParam("message", responseMessage.getMessage());
+	    	builder.queryParam("message", responseMessage.getText());
 	    }
 	    
 	    log.info("TEST >>> Invocazione metodo {} all'URL {}", method, builder.toUriString());
@@ -69,6 +69,6 @@ public class Client {
 	    		restTemplate.exchange(builder.toUriString(), method,
 	    							  new HttpEntity<Message>(responseMessage, headers),
 	    							  Message.class).getBody();
-	    log.info("TEST <<< Risposta metodo {} : [{}]", method.name(), response.getMessage());
+	    log.info("TEST <<< Risposta metodo {} : [{}]", method.name(), response.getText());
 	}
 }

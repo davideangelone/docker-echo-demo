@@ -1,4 +1,6 @@
-package it.nexi.DockerEchoDemo;
+package it.nexi.docker.echo;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +10,7 @@ class DockerEchoDemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Client.runTests();
+		assertThat(Client.runTests()).isTrue();
 	}
 
 }
